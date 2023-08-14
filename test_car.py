@@ -8,23 +8,51 @@ from engine.capulet_engine import CapuletEngine
 from engine.sternman_engine import SternmanEngine
 from engine.willoughby_engine import WilloughbyEngine
 
+from tires.carrigan_tire import CarriganTire
+from tires.octoprime_tire import OctoprimeTire
+
 from car_factory import CarFactory
 from utils import add_years_to_date
 
 
+## task 4 ##
+class testCarriganTires(unittest.TestCase):
+    def test_tire_should_be_services(self):
+        worn_tire = [0.69,0.54,0.76,0.96]
+        carriganTire = CarriganTire(worn_tire)
+        self.assertTrue(carriganTire.needs_service())
 
+    def test_tire_should_not_be_services(self):
+        worn_tire = [0.69,0.54,0.76,0.86]
+        carriganTire = CarriganTire(worn_tire)
+        self.assertFalse(carriganTire.needs_service())
+
+class testOctoprimeTires(unittest.TestCase):
+    def test_tire_should_be_services(self):
+        worn_tire = [0.69,0.84,0.86,0.86]
+        octoprimeTire = OctoprimeTire(worn_tire)
+        self.assertTrue(octoprimeTire.needs_service())
+
+    def test_tire_should_not_be_services(self):
+        worn_tire = [0.3,0.4,0.6,0.6]
+        octoprimeTire = OctoprimeTire(worn_tire)
+        self.assertFalse(octoprimeTire.needs_service())
+
+
+
+## task 3  ##
 # new test cases for individual batteries and engines
 class testSpindlerBattery(unittest.TestCase):
     def test_battery_should_be_serviced(self):
         today = datetime.today().date()
-        last_service_date = add_years_to_date(today,-3)
+        last_service_date = add_years_to_date(today,-4)
         spindlerBattery = SpindlerBattery(today, last_service_date)
 
         self.assertTrue(spindlerBattery.needs_service())
     
     def test_battery_should_not_be_serviced(self):
         today = datetime.today().date()
-        last_service_date = add_years_to_date(today,-1)
+        last_service_date = add_years_to_date(today,-2)
         spindlerBattery = SpindlerBattery(today, last_service_date)
 
         self.assertFalse(spindlerBattery.needs_service())
@@ -91,7 +119,7 @@ class TestCalliope(unittest.TestCase):
     def test_battery_should_be_serviced(self):
         today = datetime.today().date()
 
-        last_service_date = add_years_to_date(today,-3)
+        last_service_date = add_years_to_date(today,-4)
         current_mileage = 0
         last_service_mileage = 0
 
@@ -100,7 +128,7 @@ class TestCalliope(unittest.TestCase):
 
     def test_battery_should_not_be_serviced(self):
         today = datetime.today().date()
-        last_service_date = add_years_to_date(today,-1)
+        last_service_date = add_years_to_date(today,-2)
         current_mileage = 0
         last_service_mileage = 0
 
@@ -127,7 +155,7 @@ class TestCalliope(unittest.TestCase):
 class TestGlissade(unittest.TestCase):
     def test_battery_should_be_serviced(self):
         today = datetime.today().date()
-        last_service_date = add_years_to_date(today,-3)
+        last_service_date = add_years_to_date(today,-4)
         current_mileage = 0
         last_service_mileage = 0
 
@@ -138,7 +166,7 @@ class TestGlissade(unittest.TestCase):
     def test_battery_should_not_be_serviced(self):
         today = datetime.today().date()
 
-        last_service_date = add_years_to_date(today,-1)
+        last_service_date = add_years_to_date(today,-2)
         current_mileage = 0
         last_service_mileage = 0
 
@@ -167,7 +195,7 @@ class TestGlissade(unittest.TestCase):
 class TestPalindrome(unittest.TestCase):
     def test_battery_should_be_serviced(self):
         today = datetime.today().date()
-        last_service_date = add_years_to_date(today,-5)
+        last_service_date = add_years_to_date(today,-4)
         warning_light_is_on = False
 
         car = CarFactory.create_palindrome(today, last_service_date, warning_light_is_on)
