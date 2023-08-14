@@ -16,31 +16,31 @@ from utils import add_years_to_date
 # new test cases for individual batteries and engines
 class testSpindlerBattery(unittest.TestCase):
     def test_battery_should_be_serviced(self):
-        current_date = datetime.today().date()
-        last_service_date = current_date.replace(year=current_date.year - 3)
-        spindlerBattery = SpindlerBattery(current_date, last_service_date)
+        today = datetime.today().date()
+        last_service_date = add_years_to_date(today,-3)
+        spindlerBattery = SpindlerBattery(today, last_service_date)
 
         self.assertTrue(spindlerBattery.needs_service())
     
     def test_battery_should_not_be_serviced(self):
-        current_date = datetime.today().date()
-        last_service_date = current_date.replace(year=current_date.year - 1)
-        spindlerBattery = SpindlerBattery(current_date, last_service_date)
+        today = datetime.today().date()
+        last_service_date = add_years_to_date(today,-1)
+        spindlerBattery = SpindlerBattery(today, last_service_date)
 
         self.assertFalse(spindlerBattery.needs_service())
 
         
 class testNubbinBattery(unittest.TestCase):
     def test_battery_should_be_serviced(self):
-        current_date = datetime.today().date()
-        last_service_date = current_date.replace(year=current_date.year - 5)
-        nubbinBattery = NubbinBattery(current_date, last_service_date)
+        today = datetime.today().date()
+        last_service_date = add_years_to_date(today,-5)
+        nubbinBattery = NubbinBattery(today, last_service_date)
         self.assertTrue(nubbinBattery.needs_service())
     
     def test_battery_should_not_be_serviced(self):
-        current_date = datetime.today().date()
-        last_service_date = current_date.replace(year=current_date.year - 3)
-        nubbinBattery = NubbinBattery(current_date, last_service_date)
+        today = datetime.today().date()
+        last_service_date = add_years_to_date(today,-3)
+        nubbinBattery = NubbinBattery(today, last_service_date)
         self.assertFalse(nubbinBattery.needs_service())
 
 
