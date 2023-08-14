@@ -6,5 +6,6 @@
 1. change Spindler battery service criteria from 2 years to 3 years and change old test cases accordingly 
 2. add new module tires to add the functionality for tire serviceability check 
 3. add test cases to test new tire module
-NOTE: - It is not given which car fleet type uses which tire, so I’m assuming that tires are not fixed for a different type of fleet and keeping it separate from the car_factory method.
+
+NOTE: - It is not given which car fleet type uses which tire, so I’m assuming that tires are not fixed for different fleets and keeping it separate from the car_factory method.
 
